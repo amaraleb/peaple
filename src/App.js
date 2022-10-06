@@ -1,10 +1,9 @@
-import {BrowserRouter, Routes, Route,} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import CreatePost from "./components/pages/CreatePost";
 import Home from "./components/pages/Home";
 import SignUp from "./components/pages/SignUp";
 
-import "./styles/style.css"
-
-
+import "./styles/style.css";
 
 function App() {
   return (
@@ -12,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/signup" element={<SignUp />} />
+        <Route path="/new" element={<CreatePost />} />
       </Routes>
     </BrowserRouter>
   );
