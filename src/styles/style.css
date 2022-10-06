@@ -1,0 +1,184 @@
+* {
+    margin: 0;
+    padding: 0;
+
+}
+.body {
+    width: 100%;  
+    background-color: #fff;  
+    font-family: 'Fira Sans', sans-serif;
+}
+
+nav {
+    background-color: #bde7f7;
+    border: #bde7f7;
+    border-bottom: #26ade4;
+    border-style:solid
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    background-color: #fff;
+}
+
+#logo {
+    
+    margin-top: 10vh;
+    width: 400px;
+    margin-left: 47%; 
+    transform: translateX(-50%); 
+}
+
+main {
+    display: flex;
+    background-color: fff;
+}
+
+.art {
+    margin-top: 10vh;
+    width: 320px;
+    height: 280px;
+    background-color: #bde7f7;
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px 0px #26ade4;
+    margin-left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.art-cadastro {
+    height: 470px;
+    /* padding-top: 70px; */
+    margin-bottom: 100px;
+}
+
+.art-edit {
+    height: 360px;
+    /* padding-top: 70px; */
+    margin-bottom: 100px;
+}
+
+#title {
+    
+    margin-top: 8%;
+    padding-top: 0%; /*padding define altura da caixa*/
+    padding-bottom: 1%;
+    color: #f6fcff;
+    background-color: #26ade4;
+    margin-bottom: 8%;
+    width: 90%;
+    border-radius: 8px;
+    /* margin-left: 50%; */
+    /* transform: translateX(-50%); */
+}
+
+.button {
+    width: 120px;
+    border-radius: 8px;
+    padding: 5px;
+    font-weight: bold;
+    color: #26ade4;
+    border: 1px solid #26ade4 ;
+    background-color: #f6fcff;
+    font-size: 1em;
+}
+
+.buttonML {
+    margin-left: 9px;
+}
+
+.buttonMR {
+    margin-right: 9px;
+}
+
+.button:hover {
+    background-color: #26ade4;
+    transition: 0.7s;
+    border: 1px solid #f6fcff ;
+    color: #f6fcff;
+
+}
+
+.input {
+    background-color: #f6fcff;
+}
+
+/* .posbutton {
+    margin-top: 12%;
+    margin-left: 18%;
+} */
+
+.user-pwd-container {
+    background-color: #f6fcff;
+    width: 280px;
+    height: 30px;
+    text-align: center;
+    margin-bottom: 30px;
+    padding-left: 10px;
+    /* margin: auto; */
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid #26ade4;
+}
+
+.user-pwd-container input {
+    border: none;
+    width: 240px;
+    height: 20px;
+   
+}
+
+.i {
+    font-size: 1.3em;
+    color: #26ade4;
+}
+
+ input:focus {
+    box-shadow: 0 0 0 0;
+    outline: 0;
+    }
+
+
+#btn-container input {
+margin: 0 10px;    
+}
+
+/* Profile test */
+.profile-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 100px;
+}
+
+
+.profile-container button {
+    display: flex;
+    margin-top: 20px;
+    font-size: 1.5em;
+}
+
+.content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    margin: auto;
+    
+}
+
+.colorarrow {
+    color: #26ade4;
+    font-size: 30px; 
+}
+
+.title {
+    color: #26ade4;
+}
