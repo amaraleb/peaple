@@ -2,8 +2,13 @@ import { Link } from "react-router-dom";
 import Avatar from "../atoms/Avatar";
 
 function UserListItem(props) {
+    const setuser = () => {  
+      console.log(props.id);
+      localStorage.setItem("userselect", props.id);
+    }
   return (
-    <Link to={`/timeline/${props.id}`} className="users__list-item">
+    <Link onClick={setuser} to={`/timeline/${props.id}`} className="users__list-item">
+      
       <div className="users__list-item-photo">
         <Avatar />
       </div>

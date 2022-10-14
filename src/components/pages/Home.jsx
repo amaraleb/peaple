@@ -40,6 +40,7 @@ export default function Home() {
         if (result.message === "Login autorizado") {
             localStorage.setItem("token", result.token);
             localStorage.setItem("currentUser", result.id);
+            localStorage.setItem("userselect", result.id);
             
             if(localStorage.getItem("currentUser")) {enter();}
         } else {

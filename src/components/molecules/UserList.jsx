@@ -3,7 +3,7 @@ import React from 'react'
 import UserListItem from './UserListItem'
 
 function UserList(props) {
-       console.log(props.users);
+       
     return (
     <div className="">
         {props.users

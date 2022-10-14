@@ -22,7 +22,6 @@ export default function Users() {
       .then((data) => {     
         setUsers(data);
         setLoading(false);
-        console.log(data);
       })
       .catch(error => {navigate("/")})
       
