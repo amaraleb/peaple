@@ -366,6 +366,8 @@ h1 {
 .create-post__form,
 .create-post__form {
   color: #26ade4;
+  margin: 8%;
+  margin-top: 0%!important;
 }
 
 .create-post__form input,
@@ -426,4 +428,10 @@ h1 {
 
 .pos-post {
   color: white
+}
+
+.label-name{
+  padding: 2%;
+  font-weight: bold;
+  font-size: large;
 }
