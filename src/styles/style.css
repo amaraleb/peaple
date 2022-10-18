@@ -1,6 +1,7 @@
 * {
     margin: 0;
     padding: 0;
+    box-sizing: border-box;
 
 }
 .body {
@@ -19,7 +20,11 @@
 .img-profile {
     height: 50px;
     border-radius: 50%;
-    float: right;    
+    float: right;  
+}
+
+.img-profile:hover {
+    scale: 1.1;  
 }
 
 .img-profile-edit {
@@ -34,8 +39,8 @@
 }
 
 #bio-input{
-    height: 90px;
-    width: 270px;
+    height: 120px;
+    width: 265px;
     resize: none;
     box-shadow: 0 0 0 0;
     border: 0 none;
@@ -108,7 +113,7 @@ main {
     margin-bottom: 8%;
     width: 90%;
     border-radius: 8px;
-    /* margin-left: 50%; */
+    margin-left: 0;
     /* transform: translateX(-50%); */
 }
 
@@ -233,6 +238,12 @@ margin-bottom: 25px;
     
 }
 
+.responsive:hover {
+    scale: 1.2;
+    
+}
+
+
 .app-footer {
     height: 25px;
     display: flex;
@@ -250,4 +261,81 @@ margin-bottom: 25px;
     border: #bde7f7;
     border-top: #26ade4;
     border-style:solid
+}
+
+.css-18lrjg1-MuiCircularProgress-root {
+display: flex !important;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+height: 50%;
+flex:1;
+padding: 15%;
+margin:auto;
+}
+
+.users__list-item{
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  
+}
+
+.users__list-item:hover {
+    outline: 1px solid white;
+    background-color: #bde7f7;
+    color: black;
+  }
+
+.users__list-item-photo{
+  max-width: 80px;
+  margin-left:15%;
+}
+
+.users__list-item-name {
+    padding-left: 20px;
+    font-weight: 700;
+    font-size: 1.25em;
+    flex: 1;
+  }
+
+  h1{
+    display: block;
+    font-size: 2em;
+    margin-block-start: 0.67em;
+    margin-block-end: 0.67em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+    font-weight: bold;
+    margin-left: 10%;
+    color:#26ade4;
+  }
+  .user-blog__posts {
+    width: 100%;
+    height: 100%;
+    max-width: 992px;
+    padding: 20px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.container{
+    padding: 1%;
+    margin: 0 auto;
+    font-weight: 400;
+    text-align-last: left;
+
+}
+
+.sucess {
+    color: #4eeb7d;
+    display: flex;
+    justify-content: center;
+}
+
+.fail {
+    color: #ff0000;
+    display: flex;
+    justify-content: center;
 }

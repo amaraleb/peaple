@@ -2,9 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 export default function PostListItem(props) {
-  const userselect = localStorage.getItem("userselect")  
+  const userselect = localStorage.getItem("selectUser")  
   return (
-    // <Link to={`/users/${userselect}/posts/`} className="user-blog__posts-item">
+    // <Link to={`/users/${selectUser}/posts/`} className="user-blog__posts-item">
             <h2 className="container">
               {props.title}
               {props.description}

@@ -6,8 +6,9 @@ import Button from "react-bootstrap/Button";
 import { BsFillPersonFill } from "react-icons/bs";
 import { BsFillLockFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
+import ReactDOM from 'react-dom'
 
-export default function Home() {
+export default function Home(props) {
   const navigate = useNavigate();
   const signUp = () => {
     navigate("/signup");
@@ -16,8 +17,6 @@ export default function Home() {
   const enter = () => {
     navigate(`/timeline/${localStorage.getItem("currentUser")}`)
   }
-
-
 
   const [login, setLogin] = React.useState("");
   const [pwd, setPwd] = React.useState("");
@@ -40,11 +39,12 @@ export default function Home() {
         if (result.message === "Login autorizado") {
             localStorage.setItem("token", result.token);
             localStorage.setItem("currentUser", result.id);
-            localStorage.setItem("userselect", result.id);
+            localStorage.setItem("selectUser", result.id);
             
             if(localStorage.getItem("currentUser")) {enter();}
         } else {
-          alert("usuário ou senha incorretos");
+          const element = <p className="fail">Usuário ou senha incorretos</p>;
+            ReactDOM.render(element, document.getElementById('message'));
         }
       });
   };
@@ -54,6 +54,7 @@ export default function Home() {
       <div>
         <img id="logo" src={peapleicon} alt="Logo" />
       </div>
+      <div id="message"></div>
       <div className="art">
         <h1 id="title">Bem vindo!</h1>
         <div className="user-pwd-container">
@@ -75,6 +76,7 @@ export default function Home() {
           </label>
           <InputGroup>
             <Form.Control
+              type="password"
               placeholder="senha"
               aria-label="password"
               value={pwd}

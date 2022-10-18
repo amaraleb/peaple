@@ -10,14 +10,9 @@ export default function Users() {
   const [loading, setLoading] = React.useState(true);
 
   const navigate = useNavigate();
-  
-
-  const headers = new Headers();
-  headers.append("Content-Type", "application/json");
-  headers.append("authorization", localStorage.getItem("token"));
 
   React.useEffect(() => {
-    fetch("http://localhost:8080/user/",{headers:headers})
+    fetch("http://localhost:8080/user/")
       .then((response) => response.json())
       .then((data) => {     
         setUsers(data);

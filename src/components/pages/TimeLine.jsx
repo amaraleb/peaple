@@ -4,7 +4,7 @@ import PostList from '../molecules/PostList';
 import Loading from "../atoms/Loading"
 
 export default function TimeLine() {
-  const userselect = localStorage.getItem("userselect")
+  const selectUser = localStorage.getItem("selectUser")
 
   const [posts, setPosts] = React.useState([]);
   //const [user, setUser] = React.useState({});
@@ -16,14 +16,14 @@ export default function TimeLine() {
   headers.append("authorization", localStorage.getItem("token"));
 
   React.useEffect(() => {
-    fetch(`http://localhost:8080/user/${userselect}/posts`,{headers:headers})
+    fetch(`http://localhost:8080/user/${selectUser}/posts`,{headers:headers})
       .then((response) => response.json())
       .then((data) => {
         setPosts(data);
         //setUser(data[0].userData);
         setLoading(false);
       });
-  }, [userselect]);
+  }, [selectUser]);
 
   
   

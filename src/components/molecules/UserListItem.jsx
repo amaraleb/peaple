@@ -4,7 +4,7 @@ import Avatar from "../atoms/Avatar";
 function UserListItem(props) {
     const setuser = () => {  
       console.log(props.id);
-      localStorage.setItem("userselect", props.id);
+      localStorage.setItem("selectUser", props.id);
     }
   return (
     <Link onClick={setuser} to={`/timeline/${props.id}`} className="users__list-item">
