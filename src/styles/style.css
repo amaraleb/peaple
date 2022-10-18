@@ -86,7 +86,7 @@ header {
 
 #logo {
   margin-top: 10vh;
-  width: 400px;
+  width: 350px;
   margin-left: 50%;
   transform: translateX(-50%);
 }
@@ -269,7 +269,7 @@ input:focus {
 }
 
 .responsive:hover {
-  scale: 1.2;
+  scale: 1.08;
 }
 
 .app-footer {
