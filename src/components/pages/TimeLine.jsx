@@ -1,44 +1,48 @@
-import React from 'react'
-import Default from "../templates/Default"
-import PostList from '../molecules/PostList';
-import Loading from "../atoms/Loading"
+import React from "react";
+import Default from "../templates/Default";
+import PostList from "../molecules/PostList";
+import Loading from "../atoms/Loading";
+import Button from "react-bootstrap/Button";
+import { useNavigate } from "react-router-dom";
 
 export default function TimeLine() {
-  const selectUser = localStorage.getItem("selectUser")
+  const selectedUser = localStorage.getItem("selectedUser"); //usuário selecionado para ser mostrado
+  const navigate = useNavigate();
+  const newPost = () => {
+    navigate("/newpost");
+  }; //navega para pagina de criação de post
 
-  const [posts, setPosts] = React.useState([]);
-  //const [user, setUser] = React.useState({});
+  const [posts, setPosts] = React.useState([]); //recebe posts da API
 
-  const [loading, setLoading] = React.useState(true);
+  const [loading, setLoading] = React.useState(true); //define se loading será mostrado
 
-  const headers = new Headers();
+  const headers = new Headers(); //cria header para autenticação
   headers.append("Content-Type", "application/json");
   headers.append("authorization", localStorage.getItem("token"));
 
   React.useEffect(() => {
-    fetch(`http://localhost:8080/user/${selectUser}/posts`,{headers:headers})
+    fetch(`http://localhost:8080/user/${selectedUser}/posts`, {
+      headers: headers,
+    })
       .then((response) => response.json())
       .then((data) => {
         setPosts(data);
-        //setUser(data[0].userData);
         setLoading(false);
       });
-  }, [selectUser]);
+  }, [selectedUser]);
 
-  
-  
   return loading ? (
     <Loading />
-  ) :  (
+  ) : (
     <Default>
       <div className="user-blog">
-        {/* <UserBio
-          src={user.avatar}
-          name={`${user.fn} ${user.ln}`}
-          bio={user.bio}
-        /> */}
+        <div id="btn-container">
+          <Button onClick={newPost} id="buttonlg" className="button btnpos">
+            Nova postagem
+          </Button>{" "}
+        </div>
         <PostList posts={posts} />
       </div>
     </Default>
-  )
+  );
 }

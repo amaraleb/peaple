@@ -6,65 +6,67 @@ import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
 import { BsPersonLinesFill } from "react-icons/bs";
 import Loading from "../atoms/Loading";
-import ReactDOM from 'react-dom'
+import ReactDOM from "react-dom";
 
 export default function Profile() {
-  
+  const [bio, setBio] = React.useState(""); //busca bio no DOM
+  const [fname, setFname] = React.useState(""); //busca Fname no DOM
+  const [lname, setLname] = React.useState(""); //busca Lname no DOM
+  const patch = { bio: bio, fname: fname, lname: lname }; //cria constante que será enviada a API
+  const [loading, setLoading] = React.useState(true); //define se o loading aparece
+  const [bioRead, setBioRead] = React.useState(""); //busca bio existente na API
+  const [fnameRead, setFnameRead] = React.useState(""); // busca Fname existente na API
+  const [lnameRead, setLnameRead] = React.useState(""); //busca Lname existente na API
 
-  const [bio, setBio] = React.useState("");
-  const [fname, setFname] = React.useState("");
-  const [lname, setLname] = React.useState("");
-  const patch = { "bio": bio, "fname": fname, "lname": lname };
-  const [loading, setLoading] = React.useState(true);
-const [bioRead, setBioRead] = React.useState("");
-const [fnameRead, setFnameRead] = React.useState("");
-const [lnameRead, setLnameRead] = React.useState("");
-
-  const headers = new Headers();
+  const headers = new Headers(); //cria header para autenticação
   headers.append("Content-Type", "application/json");
   headers.append("authorization", localStorage.getItem("token"));
 
   const currentUser = localStorage.getItem("currentUser");
 
   React.useEffect(() => {
+    //busca informações existentens na API
     fetch(`http://localhost:8080/user/`)
       .then((response) => response.json())
       .then((data) => {
         const user = data.filter((item) => item._id === currentUser);
-        setBioRead(user[0].bio)
-        setFnameRead(user[0].fname)
-        setLnameRead(user[0].lname)
+        setBioRead(user[0].bio);
+        setFnameRead(user[0].fname);
+        setLnameRead(user[0].lname);
         setLoading(false);
       });
   }, [currentUser]);
 
   const handlePatchClick = () => {
+    //atualiza usuário
     fetch(`http://localhost:8080/user/${currentUser}/`, {
       method: "PATCH",
       headers: headers,
-      body: JSON.stringify(patch),
+      body: JSON.stringify(patch), //envia informações a API
     })
       .then((response) => response.json())
       .then((result) => {
         if (result.message === "Usuário atualizado com sucesso!") {
-            const element = <p className="sucess">Usuário atualizado com sucesso!</p>;
-            ReactDOM.render(element, document.getElementById('message'));
+          const element = (
+            <p className="sucess">Usuário atualizado com sucesso!</p>
+          );
+          ReactDOM.render(element, document.getElementById("message"));
         } else {
-            const element = <p className="fail">Falha na atualização, tente novamente mais tarde</p>;
-            ReactDOM.render(element, document.getElementById('message'));
+          const element = (
+            <p className="fail">
+              Falha na atualização, tente novamente mais tarde
+            </p>
+          );
+          ReactDOM.render(element, document.getElementById("message"));
         }
       });
   };
-  
- 
-
-  
 
   return loading ? (
     <Loading />
   ) : (
     <Default>
-        <div id="message"></div>
+      <div id="message"></div>
       <div class="art art-profile">
         <img className="img-profile-edit" src={profile} alt="" />
         <div id="bio" className="user-pwd-container">
@@ -114,7 +116,6 @@ const [lnameRead, setLnameRead] = React.useState("");
           <Button onClick={handlePatchClick} id="buttonlg" className="button">
             Atualizar
           </Button>{" "}
-          {/* <Button onClick={home} className="button buttonML">Já cadastrado</Button>{' '} */}
         </div>
       </div>
     </Default>

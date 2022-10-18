@@ -14,52 +14,51 @@ export default function SignUp() {
   const navigate = useNavigate();
   const home = () => {
     navigate("/");
-  };
+  }; 
 
-
-  const [passwordCompare, setPasswordCompare] = React.useState("");
-  const [passwordVerify, setPasswordVerify] = React.useState("");
-
-  const [email, setEmail] = React.useState("");
+  const [email, setEmail] = React.useState(""); //busca dados no DOM
   const [fname, setFname] = React.useState("");
   const [lname, setLname] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const [passwordVerify, setPasswordVerify] = React.useState(""); //verificação da senha DOM
   const signUp = {
     email: email,
     fname: fname,
     lname: lname,
     password: password,
-  };
-
+  }; //constante que será enviada a API
+  
   const handleSignUpClick = () => {
     fetch(`http://localhost:8080/user/`)
       .then((response) => response.json())
       .then((data) => {
-        const user = data.filter((item) => item.email === email);
-        
-          if (passwordCompare !== passwordVerify) {
-            const element = (
-              <p className="fail">As senhas digitadas devem ser iguais</p>
-            );
-            ReactDOM.render(element, document.getElementById("message"));
-          } else {
-            if (user.length == 0) {
-            setPassword(passwordCompare);
+        const user = data.filter((item) => item.email === email); //filtra usuários com e-mail igual ao digitado no DOM
+
+        if (password !== passwordVerify) {
+          //verifica se as 2 senhas digitadas são idênticas
+          const element = (
+            <p className="fail">As senhas digitadas devem ser iguais</p>
+          );
+          ReactDOM.render(element, document.getElementById("message"));
+        } else {
+          if (user.length === 0) {
+            //verifica se já tem algum usuário com o mesmo e-mail digitado no DOM
+            
             fetch("http://localhost:8080/user/", {
               method: "POST",
               headers: { "Content-type": "application/json; charset=UTF-8" },
-              body: JSON.stringify(signUp),
+              body: JSON.stringify(signUp), //envia dados do novo usuário a API
             })
               .then((response) => response.json())
               .then((result) => {
                 if (result.message === "User adicionado com sucesso!") {
                   const element = (
-                    <p className="sucess">
-                      usuário criado com sucesso!
-                    </p>
+                    <p className="sucess">usuário criado com sucesso!</p>
                   );
                   ReactDOM.render(element, document.getElementById("message"));
-                  setTimeout(function (){navigate("/");}, 5000);
+                  setTimeout(function () {
+                    navigate("/");
+                  }, 5000); //redireciona para a página de login após 5 segundos
                 } else {
                   const element = (
                     <p className="fail">
@@ -69,12 +68,12 @@ export default function SignUp() {
                   ReactDOM.render(element, document.getElementById("message"));
                 }
               });
+          } else {
+            const element = <p className="fail">Usuário já cadastrado</p>;
+            ReactDOM.render(element, document.getElementById("message"));
           }
-         else {
-          const element = <p className="fail">Usuário já cadastrado</p>;
-          ReactDOM.render(element, document.getElementById("message"));
         }
-  }});
+      });
   };
 
   return (
@@ -130,7 +129,7 @@ export default function SignUp() {
               type="password"
               placeholder="Senha"
               aria-label="senha"
-              onChange={(event) => setPasswordCompare(event.target.value)}
+              onChange={(event) => setPassword(event.target.value)}
             />
           </InputGroup>
         </div>

@@ -1,17 +1,12 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React from "react";
+import { getFriendlyDate } from "../../helpers/Date";
 
 export default function PostListItem(props) {
-  const userselect = localStorage.getItem("selectUser")  
   return (
-    // <Link to={`/users/${selectUser}/posts/`} className="user-blog__posts-item">
-            <h2 className="container">
-              {props.title}
-              {props.description}
-              {props.createdAt}
-            </h2>
-            
-    // </Link>
+    <h2 className="post-container">
+      <div className="post-title">{props.title}</div>
+      <div className="post-text">{props.description}</div>
+      <div className="post-date">{getFriendlyDate(props.createdAt)}</div>
+    </h2>
   );
 }
-

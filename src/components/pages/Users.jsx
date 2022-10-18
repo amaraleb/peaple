@@ -1,36 +1,35 @@
-import React from 'react'
-import Default from "../templates/Default"
-import Loading from "../atoms/Loading"
-import UserList from '../molecules/UserList';
+import React from "react";
+import Default from "../templates/Default";
+import Loading from "../atoms/Loading";
+import UserList from "../molecules/UserList";
 import { useNavigate } from "react-router-dom";
 
 export default function Users() {
-  
-  const [users, setUsers] = React.useState([]);
-  const [loading, setLoading] = React.useState(true);
+  const [users, setUsers] = React.useState([]); //recebe usuários da API
+  const [loading, setLoading] = React.useState(true); //define se loading será mostrado
 
   const navigate = useNavigate();
 
   React.useEffect(() => {
     fetch("http://localhost:8080/user/")
       .then((response) => response.json())
-      .then((data) => {     
+      .then((data) => {
         setUsers(data);
         setLoading(false);
       })
-      .catch(error => {navigate("/")})
-      
+      .catch((error) => {
+        navigate("/");
+      });
   }, []);
-    
-  
+
   return loading ? (
     <Loading />
-  ) :  (
+  ) : (
     <Default>
       <div className="users">
-      <h1>Usuários</h1>
-      <UserList users={users} />
+        <h1>Usuários</h1>
+        <UserList users={users} />
       </div>
     </Default>
-  )
+  );
 }

@@ -6,7 +6,7 @@ import Button from "react-bootstrap/Button";
 import { BsFillPersonFill } from "react-icons/bs";
 import { BsFillLockFill } from "react-icons/bs";
 import { useNavigate } from "react-router-dom";
-import ReactDOM from 'react-dom'
+import ReactDOM from "react-dom";
 
 export default function Home(props) {
   const navigate = useNavigate();
@@ -15,36 +15,32 @@ export default function Home(props) {
   };
 
   const enter = () => {
-    navigate(`/timeline/${localStorage.getItem("currentUser")}`)
-  }
+    navigate(`/timeline/${localStorage.getItem("currentUser")}`);
+  };
 
-  const [login, setLogin] = React.useState("");
-  const [pwd, setPwd] = React.useState("");
-  const log = {"email": login, "password": pwd};
-  //const [token, setToken] = React.useState()
-  //const [currentUser, setCurrentUser] = React.useState();
-
-  
-
-
+  const [login, setLogin] = React.useState(""); //busca login no DOM
+  const [pwd, setPwd] = React.useState(""); //busca senha no DOM
+  const log = { email: login, password: pwd }; //cria constante que será passada a API
 
   const handleLoginClick = () => {
     fetch("http://localhost:8080/user/login/", {
       method: "POST",
       headers: { "Content-type": "application/json; charset=UTF-8" },
-      body: JSON.stringify(log)
+      body: JSON.stringify(log), //passa a contante a API
     })
       .then((response) => response.json())
       .then((result) => {
         if (result.message === "Login autorizado") {
-            localStorage.setItem("token", result.token);
-            localStorage.setItem("currentUser", result.id);
-            localStorage.setItem("selectUser", result.id);
-            
-            if(localStorage.getItem("currentUser")) {enter();}
+          localStorage.setItem("token", result.token);
+          localStorage.setItem("currentUser", result.id); //id usuário que fez o login, todas as alterações ocorrerão nesse usuário
+          localStorage.setItem("selectedUser", result.id); //id usuário que está sendo mostrado
+
+          if (localStorage.getItem("currentUser")) {
+            enter();
+          }
         } else {
           const element = <p className="fail">Usuário ou senha incorretos</p>;
-            ReactDOM.render(element, document.getElementById('message'));
+          ReactDOM.render(element, document.getElementById("message"));
         }
       });
   };
