@@ -47,9 +47,39 @@
     outline: 0;
 }
 
+#list_align {
+    justify-content: flex-end;
+}
+
 .drawer {
     color: #26ade4;
+    justify-content: flex-end;
+    
+    
 }
+
+.link:link {
+    color: #26ade4;
+    text-decoration: none;
+    font-size: 25px;
+    justify-content: flex-end;
+  }
+.link:visited {
+    color: #26ade4;
+    text-decoration: none;
+    font-size: 25px;
+    justify-content: flex-end;
+  }
+.link:hover {
+    color: #26ade4;
+    text-decoration: none;
+    font-size: 30px;
+  }
+.link:active {
+    color: #26ade4;
+    text-decoration: none;
+    font-size: 25px;
+  }
 
 header {
     display: flex;

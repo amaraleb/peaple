@@ -36,13 +36,14 @@ export default function SignUp() {
       .then((response) => response.json())
       .then((data) => {
         const user = data.filter((item) => item.email === email);
-        if (user.length == 0) {
+        
           if (passwordCompare !== passwordVerify) {
             const element = (
               <p className="fail">As senhas digitadas devem ser iguais</p>
             );
             ReactDOM.render(element, document.getElementById("message"));
           } else {
+            if (user.length == 0) {
             setPassword(passwordCompare);
             fetch("http://localhost:8080/user/", {
               method: "POST",
@@ -52,8 +53,13 @@ export default function SignUp() {
               .then((response) => response.json())
               .then((result) => {
                 if (result.message === "User adicionado com sucesso!") {
-                  alert("usuário criado com sucesso!");
-                  home();
+                  const element = (
+                    <p className="sucess">
+                      usuário criado com sucesso!
+                    </p>
+                  );
+                  ReactDOM.render(element, document.getElementById("message"));
+                  setTimeout(function (){navigate("/");}, 5000);
                 } else {
                   const element = (
                     <p className="fail">
@@ -64,11 +70,11 @@ export default function SignUp() {
                 }
               });
           }
-        } else {
+         else {
           const element = <p className="fail">Usuário já cadastrado</p>;
           ReactDOM.render(element, document.getElementById("message"));
         }
-      });
+  }});
   };
 
   return (

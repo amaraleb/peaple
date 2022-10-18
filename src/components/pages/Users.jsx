@@ -27,7 +27,10 @@ export default function Users() {
     <Loading />
   ) :  (
     <Default>
+      <div className="users">
+      <h1>Usuários</h1>
       <UserList users={users} />
+      </div>
     </Default>
   )
 }
