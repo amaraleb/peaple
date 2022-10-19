@@ -3,7 +3,6 @@ import Avatar from "../atoms/Avatar";
 
 function UserListItem(props) {
   const setuser = () => {
-    console.log(props.id);
     localStorage.setItem("selectedUser", props.id);
   };
   return (

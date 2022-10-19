@@ -14,7 +14,7 @@ export default function SignUp() {
   const navigate = useNavigate();
   const home = () => {
     navigate("/");
-  }; 
+  };
 
   const [email, setEmail] = React.useState(""); //busca dados no DOM
   const [fname, setFname] = React.useState("");
@@ -27,7 +27,7 @@ export default function SignUp() {
     lname: lname,
     password: password,
   }; //constante que será enviada a API
-  
+
   const handleSignUpClick = () => {
     fetch(`http://localhost:8080/user/`)
       .then((response) => response.json())
@@ -43,7 +43,7 @@ export default function SignUp() {
         } else {
           if (user.length === 0) {
             //verifica se já tem algum usuário com o mesmo e-mail digitado no DOM
-            
+
             fetch("http://localhost:8080/user/", {
               method: "POST",
               headers: { "Content-type": "application/json; charset=UTF-8" },

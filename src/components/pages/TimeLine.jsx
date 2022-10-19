@@ -12,6 +12,10 @@ export default function TimeLine() {
     navigate("/newpost");
   }; //navega para pagina de criação de post
 
+  if (localStorage.getItem("token") === null) {
+    navigate("/");
+  }
+
   const [posts, setPosts] = React.useState([]); //recebe posts da API
 
   const [loading, setLoading] = React.useState(true); //define se loading será mostrado
@@ -21,14 +25,18 @@ export default function TimeLine() {
   headers.append("authorization", localStorage.getItem("token"));
 
   React.useEffect(() => {
-    fetch(`http://localhost:8080/user/${selectedUser}/posts`, {
-      headers: headers,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setPosts(data);
-        setLoading(false);
-      });
+    if (localStorage.getItem("token") === null) {
+      navigate("/");
+    } else {
+      fetch(`http://localhost:8080/user/${selectedUser}/posts`, {
+        headers: headers,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          setPosts(data);
+          setLoading(false);
+        });
+    }
   }, [selectedUser]);
 
   return loading ? (

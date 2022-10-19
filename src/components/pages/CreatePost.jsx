@@ -3,9 +3,19 @@ import Button from "react-bootstrap/Button";
 import Default from "../templates/Default";
 import ReactDOM from "react-dom";
 import { useNavigate } from "react-router-dom";
+import Loading from "../atoms/Loading";
 
 export default function CreatePost() {
   const navigate = useNavigate();
+  const [loading, setLoading] = React.useState(true); //define se o loading aparece
+
+  React.useEffect(() => {
+    if (localStorage.getItem("token") === null) {
+      navigate("/");
+    } else {
+      setLoading(false);
+    }
+  }, []);
 
   const headers = new Headers(); //cria o header para autenticar na API
   headers.append("Content-Type", "application/json");
@@ -39,12 +49,13 @@ export default function CreatePost() {
       });
   };
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <Default>
       <div id="message"></div>
       <div className="create-post">
         <h1>Criar</h1>
-
         <form className="create-post__form">
           <div className="create-post__form-name">
             <label for="name" className="label-name">

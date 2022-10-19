@@ -7,8 +7,10 @@ import Button from "react-bootstrap/Button";
 import { BsPersonLinesFill } from "react-icons/bs";
 import Loading from "../atoms/Loading";
 import ReactDOM from "react-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Profile() {
+  const navigate = useNavigate();
   const [bio, setBio] = React.useState(""); //busca bio no DOM
   const [fname, setFname] = React.useState(""); //busca Fname no DOM
   const [lname, setLname] = React.useState(""); //busca Lname no DOM
@@ -26,15 +28,19 @@ export default function Profile() {
 
   React.useEffect(() => {
     //busca informações existentens na API
-    fetch(`http://localhost:8080/user/`)
-      .then((response) => response.json())
-      .then((data) => {
-        const user = data.filter((item) => item._id === currentUser);
-        setBioRead(user[0].bio);
-        setFnameRead(user[0].fname);
-        setLnameRead(user[0].lname);
-        setLoading(false);
-      });
+    if (localStorage.getItem("token") === null) {
+      navigate("/");
+    } else {
+      fetch(`http://localhost:8080/user/`)
+        .then((response) => response.json())
+        .then((data) => {
+          const user = data.filter((item) => item._id === currentUser);
+          setBioRead(user[0].bio);
+          setFnameRead(user[0].fname);
+          setLnameRead(user[0].lname);
+          setLoading(false);
+        });
+    }
   }, [currentUser]);
 
   const handlePatchClick = () => {

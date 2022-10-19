@@ -11,15 +11,19 @@ export default function Users() {
   const navigate = useNavigate();
 
   React.useEffect(() => {
-    fetch("http://localhost:8080/user/")
-      .then((response) => response.json())
-      .then((data) => {
-        setUsers(data);
-        setLoading(false);
-      })
-      .catch((error) => {
-        navigate("/");
-      });
+    if (localStorage.getItem("token") === null) {
+      navigate("/");
+    } else {
+      fetch("http://localhost:8080/user/")
+        .then((response) => response.json())
+        .then((data) => {
+          setUsers(data);
+          setLoading(false);
+        })
+        .catch((error) => {
+          navigate("/");
+        });
+    }
   }, []);
 
   return loading ? (
