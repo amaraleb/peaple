@@ -33,7 +33,7 @@ export default function DrawerMenu(props) {
       </ListItem>
       <ListItem id="list_align">
         <Link className="link" to={`/timeline/${selectedUser}`}>
-          Time-line
+          Timeline
         </Link>
       </ListItem>
       <ListItem id="list_align">
